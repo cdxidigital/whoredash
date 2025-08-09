@@ -41,9 +41,14 @@ app.get('/api/health', (req, res) => {
 });
 
 // Import route handlers
-import './routes/companions.js';
-import './routes/auth.js';
-import './routes/bookings.js';
+import authRoutes from './routes/auth.js';
+import companionsRoutes from './routes/companions.js';
+import bookingsRoutes from './routes/bookings.js';
+
+// Use routes
+app.use(authRoutes);
+app.use(companionsRoutes);
+app.use(bookingsRoutes);
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
