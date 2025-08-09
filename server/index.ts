@@ -1,21 +1,10 @@
 import express from 'express';
 import session from 'express-session';
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Database setup
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is required');
-}
-
-const client = postgres(connectionString);
-export const db = drizzle(client);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
